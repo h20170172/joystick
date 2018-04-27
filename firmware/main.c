@@ -56,7 +56,7 @@ static int read_joy( void )
 	//Y
         val1 = adc_read(0);
        // report[0] = val1;
-        //val2 = adc_read(1);
+        val2 = adc_read(1);
         //report[1] = val2;
      // return val1;
 	//sprintf(buffer, "%d, %d", report[0], report[1]);
@@ -89,7 +89,8 @@ usbMsgLen_t usbFunctionSetup(uchar data [8] )
 	switch ( rq->bRequest )
 	{
 	case 0:  PORTB = 0B00000001;// HID joystick only has to handle this
-		replybuf[0]=2;
+		replybuf[0]=val1;
+		replybuf[1]=val2;	
                 usbMsgPtr = (unsigned char *) replybuf;
 		return sizeof report;
 	
