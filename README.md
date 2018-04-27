@@ -25,8 +25,8 @@ Device Driver is present in the joy_driver directory. Relevant files are usb_2.c
 ```shell
 $ sudo rmmod usbhid
 $ make clean
-$ make kern
-$ make insert
+$ sudo modprobe input-polldev
+$ sudo insmod usb_2.ko
 ```
 
 ### User Space Application
